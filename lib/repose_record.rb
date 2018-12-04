@@ -21,7 +21,7 @@ class ReposeRecord
       case events[k][0..4]
       when "Guard"
         guard_id = events[k].match(/#(\d+)/)[1].to_i
-        @sleep_map[guard_id] = Array.new(60, 0) unless @sleep_map[guard_id]
+        @sleep_map[guard_id] = Array.new(60, 0) unless @sleep_map.key?(guard_id)
       when "falls"
         falls_sleep = k.min
       when "wakes"
@@ -40,12 +40,18 @@ class ReposeRecord
   end
 
   def sleepy_minute_times_guard
-    times_sleepy_minute_for_each_guard = Hash.new
-    @sleep_map.each_pair do |k,v|
-      times_sleepy_minute_for_each_guard[k] = v.max
+    sleepy_guard = 0
+    sleepy_times = 0
+    sleepy_minute = 0
+    @sleep_map.each_pair do |guard, minutes|
+      minutes.each_with_index do |times, minute|
+        if times > sleepy_times then
+          sleepy_times = times
+          sleepy_minute = minute
+          sleepy_guard = guard
+        end
+      end
     end
-    sleepy_guard = times_sleepy_minute_for_each_guard.key(times_sleepy_minute_for_each_guard.values.max)
-    sleepy_minute = @sleep_map[sleepy_guard].index(times_sleepy_minute_for_each_guard[sleepy_guard])
     return sleepy_guard * sleepy_minute
   end
 end
