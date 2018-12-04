@@ -26,12 +26,6 @@ class FabricSlicer
   end
 
   def calculate_overlaping_area
-    # overlap = 0
-    # (0..999).each do |c|
-    #   (0..999).each do |r|
-    #     overlap += 1 if @fabric[c][r] > 1
-    #   end
-    # end
     return @overlaped_area
   end
 
