@@ -29,7 +29,7 @@ end
 describe "InventoryManagementSystem" do
   it 'returns 12 for the sample' do
     ims = InventoryManagementSystem.new()
-    ims.load_file('day2/sample-part1.txt')
+    ims.load_file('sample/02_sample_part1.txt')
     expect(ims.checksum).to eq 12
   end
 end
@@ -37,7 +37,7 @@ end
 describe "IMS - Part2" do
   it 'returns "fgij" for the sample' do
     ims2 = InventoryManagementSystem.new()
-    ims2.load_file('day2/sample-part2.txt')
+    ims2.load_file('sample/02_sample_part2.txt')
     expect(ims2.find_common_letters_of_correct_boxes).to eq "fgij"
   end
 end
