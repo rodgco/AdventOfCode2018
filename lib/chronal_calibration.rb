@@ -7,11 +7,6 @@ class ChronalCalibration
   end
 
   def calculate_frequency
-    # frequency = @initial_frequency
-    # @input.each do |n|
-    #   frequency += n
-    # end
-    # return frequency
     return @initial_frequency + @input.sum
   end
 
@@ -30,5 +25,9 @@ class ChronalCalibration
     File.open(filename).each do |l|
       @input << l.to_i
     end
+  end
+
+  def load_array(input)
+    @input = input.dup
   end
 end
