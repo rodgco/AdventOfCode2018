@@ -44,7 +44,7 @@ class ReposeRecord
     load_data(lines)
   end
   
-  def load_data(data)
+  def load_data(lines)
     guard_id = 0
     falls_sleep = 0
   
